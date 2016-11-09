@@ -10,10 +10,9 @@ KINOPOISK_RU_URL = "https://www.kinopoisk.ru/index.php"
 
 def get_afisha_movies_base_inform():
     response = requests.get(AFISHA_RU_URL)
-
     parsed_html = BeautifulSoup(response.text, 'html.parser')
     movie_list = parsed_html.find(class_='b-theme-schedule m-schedule-with-collapse')\
-        .find_all(class_='object s-votes-hover-area collapsed')
+                            .find_all(class_='object s-votes-hover-area collapsed')
     if movie_list is None:
         print("No movies on afisha page!")
         exit()
