@@ -6,16 +6,15 @@ site kinopoisk.ru or number of cinemas where movies are going.<br />
 # How to run:<br />
 1. Run the program: <br />
 py -3 cinemas.py <br />
-
 You can choose the type of sorting:<br />
 py -3 cinemas.py -s rating <br />
-or <br />
+or sort by number of cinemas where movies are going <br />
 py -3 cinemas.py -s cinema <br />
 
 
-#Output examples:<br /><br /><br />
+#Output examples:<br />
 
-Ten first movies sorted by rating:<br />
+<b>Ten first movies sorted by rating:</b><br />
 Movie name, Rating, Number of users, Number of cinemas<br />
 Молот, 8.048, 1390, 114<br />
 Доктор Стрэндж, 7.869, 40341, 162<br />
@@ -27,7 +26,7 @@ Movie name, Rating, Number of users, Number of cinemas<br />
 Инферно, 6.610, 20409, 55<br />
 Девушка в поезде, 6.581, 6077, 141<br />
 
-Ten first movies sorted by number of cinemas:<br />
+<b>Ten first movies sorted by number of cinemas:</b><br />
 Movie name, Rating, Number of users, Number of cinemas<br />
 Доктор Стрэндж, 7.877, 39138, 161<br />
 Тролли, 6.867, 2210, 161<br />
