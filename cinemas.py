@@ -14,13 +14,13 @@ def get_afisha_movies_base_inform():
     movie_list = parsed_html.find(class_='b-theme-schedule m-schedule-with-collapse')\
                             .find_all(class_='object s-votes-hover-area collapsed')
     if movie_list is None:
-        print("No movies on afisha page!")
-        exit()
+        exit("No movies on afisha page!")
     return movie_list
 
 
 def parse_list_tags_movies_afisha(movie_list_tags):
     movie_dict = {}
+    i =1
     for movie_tag in movie_list_tags:
         movie_name = movie_tag.find(class_='m-disp-table').find("a").get_text()
         cinema_list = movie_tag.find('table').find_all(class_="b-td-item")
@@ -30,6 +30,9 @@ def parse_list_tags_movies_afisha(movie_list_tags):
                                   'year': year,
                                   'rating': None,
                                   'users': None}
+        if i == 5:
+            break
+        i+= 1
     return movie_dict
 
 
@@ -109,9 +112,9 @@ def output_movies_to_console(movies, sorted_by_rating, value1):
     sorted_x.reverse()
     print("Ten first movies sorted by {}:".format(value1.replace("_", " ")))
     print("Movie name, Rating, Number of users, Number of cinemas")
-    for movie_name in sorted_x[0:10]:
-        print("{0}, {1}, {2}, {3}".format(movie_name[0], movies[movie_name[0]]['rating'],
-                                          movies[movie_name[0]]['users'], movies[movie_name[0]]['number_of_cinemas']))
+    for movie in sorted_x[:10]:
+        print("{0}, {1}, {2}, {3}".format(movie[0], movies[movie[0]]['rating'],
+                                          movies[movie[0]]['users'], movies[movie[0]]['number_of_cinemas']))
 
 
 def get_command_line_arguments():
@@ -123,9 +126,9 @@ def get_command_line_arguments():
 
 if __name__ == '__main__':
     args = get_command_line_arguments()
-    sort_by_rating = args.sort
+    sort_by_method = args.sort
     movie_list_tags_afisha = get_afisha_movies_base_inform()
     movie_directory = parse_list_tags_movies_afisha(movie_list_tags_afisha)
     movies_info = fetch_movie_info(movie_directory)
-    sorted_dict, text_value_of_sort_method = sort_movies(movies_info, sort_by_rating)
+    sorted_dict, text_value_of_sort_method = sort_movies(movies_info, sort_by_method)
     output_movies_to_console(movies_info, sorted_dict, text_value_of_sort_method)
